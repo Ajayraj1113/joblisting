@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import JobDetailsPage from "./pages/JobDetailsPage/JobDetailsPage";
+import JobPostPage from "./pages/JobPostPage/JobPostPage";
+import HomePage from "./pages/HomePage/HomePage";
+import ProtectedRoute from "./components/ProtectedRoutes/ProtectedRoute";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/register" element={ <RegisterPage /> } />
+        <Route path="/login" element={ <LoginPage /> } />
+        <Route path="/job-details/:id" element={ <JobDetailsPage /> } />
+        <Route 
+          path="/job-post" 
+          element={ <ProtectedRoute Component={JobPostPage}  /> } />
+        <Route path="/" element={ <HomePage /> } />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
 export default App;
+ 
